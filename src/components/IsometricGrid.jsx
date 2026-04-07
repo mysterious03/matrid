@@ -6,8 +6,8 @@ import * as THREE from 'three';
 function Box({ position, color, delay }) {
   const mesh = useRef();
   
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime() + delay;
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime + delay;
     mesh.current.position.y = position[1] + Math.sin(t * 1.5) * 0.1;
     mesh.current.scale.setScalar(1 + Math.sin(t * 2) * 0.05);
   });
@@ -58,8 +58,8 @@ function Grid() {
 
 export default function IsometricGrid() {
   return (
-    <div className="absolute inset-0 z-0 opacity-40">
-      <Canvas camera={{ position: [5, 5, 5], fov: 35 }}>
+    <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+      <Canvas dpr={[1, 1.5]} camera={{ position: [5, 5, 5], fov: 35 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} color="#00f2ff" />
         <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={0.5} />

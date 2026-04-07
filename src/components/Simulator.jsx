@@ -278,6 +278,7 @@ export default function SimulatorSection() {
       }
       const tid = sorted[i].id;
       setCells(cur => cur.map(c => c.id === tid ? { ...c, isHighlighted: true } : { ...c, isHighlighted: false }));
+      i++;
     }, 120);
   };
 
