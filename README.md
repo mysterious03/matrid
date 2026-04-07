@@ -1,75 +1,90 @@
-# 🌌 MatriGrid
+# 🌌 MatriGrid: Atomic Spatial Expansion Protocol
 
-**Infinite 2D spatial expansion. Zero data movement.**
+[![Version](https://img.shields.io/badge/Protocol-v1.0.0--Alpha-00f2ff?style=flat-square&logo=git&logoColor=white)](https://github.com/mysterious03/matrid)
+[![License](https://img.shields.io/badge/License-MIT-gray?style=flat-square)](LICENSE)
+[![Tech](https://img.shields.io/badge/Stack-React%20%7C%20Vite%20%7C%20Tailwind-0a0a0a?style=flat-square)](https://vitejs.dev/)
 
-MatriGrid is a high-performance, quad-directional sparse data structure engineered specifically for robotics vision, satellite imagery, and large-scale spatial computing. It allows for logical boundary expansion in $O(1)$ time while maintaining extreme memory efficiency through sparse spatial mapping.
+> "Never move data. Move the coordinate system."
 
-![MatriGrid Header](https://raw.githubusercontent.com/mysterious03/matrid/main/public/logo.png)
-
----
-
-## 🚀 Core Proposition
-
-Traditional 2D arrays are constrained by fixed boundaries. Expanding them requires $O(N)$ reallocations and data migrations. MatriGrid solves this by treating space as a dynamic, sparse map where boundaries are merely logical pointers.
-
-- **Expansion**: $O(1)$ complexity for adding new rows/columns in any direction.
-- **Efficiency**: Sparse storage ensures memory is only used where data exists.
-- **Atomic Operations**: Push, Pop, and Peek operations are localized and atomic.
-- **Coordinate Mapping**: Advanced spatial transformations like 90° rotations and transpositions are handled through logical coordinate remapping.
+**MatriGrid** is a high-performance, quad-directional sparse data structure engineered for robotics vision, satellite imagery, and large-scale spatial computing. It redefines 2D data management by shifting from contiguous memory blocks to a multi-dimensional coordinate-mapping protocol.
 
 ---
 
-## 🛠️ Technical Features
+## 🔬 The Core Thesis: $O(1)$ Boundary Shift
+
+Traditional 2D arrays are geometrically constrained. Expanding their boundaries requires $O(N)$ reallocations and data migrations, where the entire grid is copied to a larger memory block. 
+
+MatriGrid solves this through a **Quad-Directional Sparse Coordinate Mapper**. By expanding logical boundaries instead of relocating physical data, it achieves true $O(1)$ directional growth. Data remains stationary; only the system's boundary perspective shifts.
+
+### 📊 Performance Comparison
+
+| Feature | Legacy Approach ($O(N)$) | MatriGrid Protocol ($O(1)$) |
+| :--- | :--- | :--- |
+| **Memory Model** | Contiguous (Full Grid) | **Sparse (Occupied Nodes Only)** |
+| **Expansion Cost** | $O(N^2)$ – Copy & Relocate | **$O(1)$ – Logical Bound Shift** |
+| **Directional Growth** | Unidirectional / Linear | **4-Independent Boundaries** |
+| **Negative Space** | Fixed Offset Complexity | **Native Coordinate Integrity** |
+| **Transforms** | Matrix Rebuild | **Coordinate Remapping ($O(N)$)** |
+
+---
+
+## 🛠️ Technical Architecture
 
 ### 1. Visual Workbench (Simulator)
-The integrated simulator provides a low-level preview of bound-shifting logic. Users can interact with the grid via:
-- **Manual Controls**: Explicit "Push" and "Pop" actions for all four cardinal directions.
-- **Terminal Console**: A built-in CLI supporting commands like `pushTop()`, `rotate90()`, and `find(val)`.
-- **Real-time Feedback**: Visual indicators for new nodes, origin points, and search results.
+The integrated sandbox provides a low-level preview of bound-shifting logic.
+- **Directional Push/Pop**: Manipulate all four cardinal boundaries independently.
+- **Terminal Console**: Execute commands via a built-in CLI:
+  - `pushTop()`, `popLeft()`, `rotate90()`
+  - `find(42)`, `fill("X")`
+  - `forEach(fn)` — Sparse map iteration.
+- **Atomic Peek**: $O(1)$ read-lookahead of edge data before modification.
 
 ### 2. Spatial Engine
-- **Quad-Directional Expansion**: Grow the grid Up, Down, Left, or Right without affecting existing data.
-- **Sparse Traversal**: Efficiently iterate only through occupied nodes using `forEach(fn)`.
-- **Atomic Peek/Pop**: Verify or remove edge data with specialized single-cycle operations.
+The engine handles coordinate integrity across the infinite 2D plane, supporting both positive and negative spatial indices without manual normalized offsets. 
 
-### 3. Modern Tech Stack
-- **Frontend**: React 18 with Vite for lightning-fast HMR.
-- **Animations**: Framer Motion for smooth, hardware-accelerated spatial transitions.
-- **Styling**: Tailwind CSS with a custom "Cyber-Pro" design system.
-- **Icons**: Lucide React for consistent, crisp iconography.
+### 3. Sparse Memory Efficiency
+Unlike standard matrices that allocate memory for every cell (including empty "dead zones"), MatriGrid only allocates memory for nodes containing data. This makes it ideal for:
+- **Satellite Imagery**: Handling massive, sparse planetary maps.
+- **Robotics Vision**: Real-time pathing in unknown environments.
+- **VR/AR**: Dynamic spatial mesh expansion.
 
 ---
 
 ## 🖥️ Getting Started
 
-To run the MatriGrid workbench locally:
+### Prerequisites
+- Node.js (v18+)
+- npm / pnpm
 
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/mysterious03/matrid.git
 
-# Navigate to directory
-cd matrid
-
 # Install dependencies
 npm install
 
-# Start development server
+# Start the interactive workbench
 npm run dev
 ```
 
 ---
 
-## 📐 Architecture
+## 📐 Mathematical Foundation
 
-MatriGrid utilizes a coordinate-based sparse mapping strategy. Instead of a contiguous memory block, nodes are indexed by their `(x, y)` coordinates, allowing the "logical center" to shift without moving existing data.
+The MatriGrid protocol defines the grid state as a set of occupied points $P$ and a boundary rectangle $B$:
 
-| Operation | Complexity | Description |
-| :--- | :--- | :--- |
-| **Push** | $O(1)$ | Expand logical boundary |
-| **Pop** | $O(1)$ | Contract logical boundary |
-| **Peek** | $O(1)$ | Inspect edge data |
-| **Rotate** | $O(N)$ | Coordinate remap (N = nodes) |
+$$ P = \{ (x_i, y_i, v_i) \mid x, y \in \mathbb{Z} \} $$
+$$ B = [xmin, xmax] \times [ymin, ymax] $$
+
+Expanding a boundary (e.g., $pushTop$) simply decrements $ymin$, creating logical availability for row $ymin-1$ without traversing or shifting $P$.
+
+---
+
+## 📜 Future Roadmap
+- [ ] **3D Voxel Integration**: Expansion into Z-axis spatial mapping ($O(1)$ volume growth).
+- [ ] **Wasm Engine**: Porting coordinate remapping logic to Rust/Wasm for $10x$ faster transforms.
+- [ ] **Distributed Persistence**: Native support for sharded coordinate storage.
 
 ---
 
@@ -79,5 +94,8 @@ MatriGrid utilizes a coordinate-based sparse mapping strategy. Instead of a cont
 
 ---
 
-> [!IMPORTANT]
-> MatriGrid is currently in **v1.0.0 Alpha**. It is engineered for low-level spatial logic experimentation and is not yet recommended for production database systems.
+> [!NOTE]
+> MatriGrid is currently in **Alpha (v1.0.0)**. It is a research-oriented implementation focused on validating $O(1)$ expansion logic.
+
+---
+© 2026 MatriGrid Protocol. All rights reserved.
