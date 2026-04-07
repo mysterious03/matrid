@@ -29,7 +29,7 @@ export default function HeroSection() {
            transition={{ duration: 0.8, delay: 0.1 }}
            className="mb-8"
         >
-          <img src="/logo.png" alt="matrid brand" loading="eager" width="128" height="128" decoding="async" className="h-24 md:h-32 w-auto mx-auto brightness-125 contrast-150 mix-blend-screen neon-glow-cyan mb-8" />
+          <img src="/logo.png" alt="matrid brand" loading="eager" width="128" height="128" decoding="async" className="h-24 md:h-32 w-auto mx-auto brightness-125 contrast-150 mix-blend-screen neon-glow-cyan mb-8" style={{ WebkitMaskImage: 'radial-gradient(ellipse at center, black 50%, transparent 75%)', maskImage: 'radial-gradient(ellipse at center, black 50%, transparent 75%)' }} />
           <p className="text-xl md:text-2xl font-medium text-gray-400 max-w-2xl mx-auto leading-tight">
             Infinite 2D spatial expansion. <br />
             <span className="text-gray-600">Zero data movement.</span>
