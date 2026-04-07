@@ -107,7 +107,7 @@ export default function SimulatorSection() {
   const [cells, setCells] = useState([]);
   const [bounds, setBounds] = useState({ minX: -1, maxX: 1, minY: -1, maxY: 1 });
   const [camera, setCamera] = useState({ x: 0, y: 0, scale: 1 });
-  const [logs, setLogs] = useState([{ text: "MatriGrid v1.0.0 initialized", type: 'info' }]);
+  const [logs, setLogs] = useState([{ text: "Matrid v1.0.0 initialized", type: 'info' }]);
   const [flashEffect, setFlashEffect] = useState('');
 
   const [fillVal, setFillVal] = useState("42");

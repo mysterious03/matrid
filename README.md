@@ -1,4 +1,4 @@
-# 🌌 MatriGrid: Atomic Spatial Expansion Protocol
+# 🌌 Matrid: Atomic Spatial Expansion Protocol
 
 [![Version](https://img.shields.io/badge/Protocol-v1.0.0--Alpha-00f2ff?style=flat-square&logo=git&logoColor=white)](https://github.com/mysterious03/matrid)
 [![License](https://img.shields.io/badge/License-MIT-gray?style=flat-square)](LICENSE)
@@ -6,7 +6,7 @@
 
 > "Never move data. Move the coordinate system."
 
-**MatriGrid** is a high-performance, quad-directional sparse data structure engineered for robotics vision, satellite imagery, and large-scale spatial computing. It redefines 2D data management by shifting from contiguous memory blocks to a multi-dimensional coordinate-mapping protocol.
+**Matrid** is a high-performance, quad-directional sparse data structure engineered for robotics vision, satellite imagery, and large-scale spatial computing. It redefines 2D data management by shifting from contiguous memory blocks to a multi-dimensional coordinate-mapping protocol.
 
 ---
 
@@ -14,11 +14,11 @@
 
 Traditional 2D arrays are geometrically constrained. Expanding their boundaries requires $O(N)$ reallocations and data migrations, where the entire grid is copied to a larger memory block. 
 
-MatriGrid solves this through a **Quad-Directional Sparse Coordinate Mapper**. By expanding logical boundaries instead of relocating physical data, it achieves true $O(1)$ directional growth. Data remains stationary; only the system's boundary perspective shifts.
+Matrid solves this through a **Quad-Directional Sparse Coordinate Mapper**. By expanding logical boundaries instead of relocating physical data, it achieves true $O(1)$ directional growth. Data remains stationary; only the system's boundary perspective shifts.
 
 ### 📊 Performance Comparison
 
-| Feature | Legacy Approach ($O(N)$) | MatriGrid Protocol ($O(1)$) |
+| Feature | Legacy Approach ($O(N)$) | Matrid Protocol ($O(1)$) |
 | :--- | :--- | :--- |
 | **Memory Model** | Contiguous (Full Grid) | **Sparse (Occupied Nodes Only)** |
 | **Expansion Cost** | $O(N^2)$ – Copy & Relocate | **$O(1)$ – Logical Bound Shift** |
@@ -43,7 +43,7 @@ The integrated sandbox provides a low-level preview of bound-shifting logic.
 The engine handles coordinate integrity across the infinite 2D plane, supporting both positive and negative spatial indices without manual normalized offsets. 
 
 ### 3. Sparse Memory Efficiency
-Unlike standard matrices that allocate memory for every cell (including empty "dead zones"), MatriGrid only allocates memory for nodes containing data. This makes it ideal for:
+Unlike standard matrices that allocate memory for every cell (including empty "dead zones"), Matrid only allocates memory for nodes containing data. This makes it ideal for:
 - **Satellite Imagery**: Handling massive, sparse planetary maps.
 - **Robotics Vision**: Real-time pathing in unknown environments.
 - **VR/AR**: Dynamic spatial mesh expansion.
@@ -72,7 +72,7 @@ npm run dev
 
 ## 📐 Mathematical Foundation
 
-The MatriGrid protocol defines the grid state as a set of occupied points $P$ and a boundary rectangle $B$:
+The Matrid protocol defines the grid state as a set of occupied points $P$ and a boundary rectangle $B$:
 
 $$ P = \{ (x_i, y_i, v_i) \mid x, y \in \mathbb{Z} \} $$
 $$ B = [xmin, xmax] \times [ymin, ymax] $$
@@ -95,7 +95,7 @@ Expanding a boundary (e.g., $pushTop$) simply decrements $ymin$, creating logica
 ---
 
 > [!NOTE]
-> MatriGrid is currently in **Alpha (v1.0.0)**. It is a research-oriented implementation focused on validating $O(1)$ expansion logic.
+> Matrid is currently in **Alpha (v1.0.0)**. It is a research-oriented implementation focused on validating $O(1)$ expansion logic.
 
 ---
-© 2026 MatriGrid Protocol. All rights reserved.
+© 2026 Matrid Protocol. All rights reserved.

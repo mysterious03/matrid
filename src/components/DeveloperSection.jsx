@@ -86,14 +86,14 @@ export default function DeveloperSection() {
                 <div className="w-2.5 h-2.5 rounded-full bg-white/5 border border-white/10" />
                 <div className="w-2.5 h-2.5 rounded-full bg-white/5 border border-white/10" />
               </div>
-              <span className="text-[10px] font-mono text-gray-700 uppercase tracking-widest">MatriGrid.hpp</span>
+              <span className="text-[10px] font-mono text-gray-700 uppercase tracking-widest">Matrid.hpp</span>
             </div>
             
             <div className="p-8 overflow-x-auto">
               <pre className="font-mono text-[13px] leading-relaxed text-gray-400">
                 <code className="block whitespace-pre">
                   {`template <typename T>
-class MatriGrid {
+class Matrid {
 private:
   unordered_map<string, T> data;
   int minX, maxX, minY, maxY;
